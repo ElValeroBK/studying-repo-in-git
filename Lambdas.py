@@ -19,3 +19,7 @@ def sum_three_values(value):
 
 
 print(sum_three_values(5)(2, 4))
+
+lambda_var = lambda value_1, value_2: value_1 + value_2 * 2
+
+print(lambda_var(2, 4))
