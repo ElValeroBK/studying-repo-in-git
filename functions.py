@@ -1,4 +1,4 @@
-''' 
+
 def good_neighbor(name,last_name): #definition   #parameters  #key word argument
     print(f'hello {name} {last_name}' )
     # return    return a value 
@@ -7,9 +7,9 @@ def good_neighbor(name,last_name): #definition   #parameters  #key word argument
     
 print("hola")
 good_neighbor("john","valero")     #good_neighbor(last_name= "valero", name="john" )
-'''
 
-'''def emojis(type):     
+
+def emojis(type):     
      emoji = {
           "contencto" : "😄",
           "triste": "😒"
@@ -21,14 +21,15 @@ good_neighbor("john","valero")     #good_neighbor(last_name= "valero", name="joh
      return out
      
 
-print(emojis(f"hola pareces estar contencto pero a la vez triste"))'''
+print(emojis(f"hola pareces estar contencto pero a la vez triste"))
 
-'''try:
+
+try:
      number = int(input("enter number ->  "))
      print(number)        
 except ValueError:
      print("just number")
-'''
+
 
 try:                   #exeptions error
  

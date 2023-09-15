@@ -1,65 +1,65 @@
 
    ## EL FAMOSO FIZZ BUZZ [Fácil] ##
 
-# def rango():
-#     for numero in range(1,101):
+def rango():
+    for numero in range(1,101):
 
-#      if numero % 3== 0 and numero % 5 == 0:
-#         print("fizzbuzz")
+     if numero % 3== 0 and numero % 5 == 0:
+        print("fizzbuzz")
     
-#      if numero % 3 == 0:
-#         print("fizz")
+     if numero % 3 == 0:
+        print("fizz")
     
-#      elif numero % 5 == 0:
-#         print("buzz")
+     elif numero % 5 == 0:
+        print("buzz")
 
-#      else:
-#          print(numero)
+     else:
+         print(numero)
 
-# rango()
+rango()
 
 
     ## Es un anagrama?[Facil] ##
 
 
-# def es_anagrama(word_one:str,wordtwo:str):
-#     if word_one.lower() == wordtwo.lower():
-#         return False
-#     return sorted(word_one.lower()) == sorted(wordtwo.lower())
+def es_anagrama(word_one:str,wordtwo:str):
+    if word_one.lower() == wordtwo.lower():
+        return False
+    return sorted(word_one.lower()) == sorted(wordtwo.lower())
   
 
-# print(es_anagrama("Hose","hose"))
+print(es_anagrama("Hose","hose"))
 
 
 ## Sucesion de fibonacci [Facil] ##
 
-# def fibonacci():
-#     fibona_list = [0,1]
-#     for iter in range(48):
-#         fibona_list.extend([fibona_list[-1] + fibona_list[-2]]) 
+def fibonacci():
+    fibona_list = [0,1]
+    for iter in range(48):
+        fibona_list.extend([fibona_list[-1] + fibona_list[-2]]) 
         
-#     print(fibona_list)
+    print(fibona_list)
 
 # fibonacci()
 
 
-## Es un numero primo? ##
+# Es un numero primo? ##
 
-# def is_prime(num:int):
-#     if num <= 1:
-#        return False
-#     for index in range(2,num):
-#         if num % index == 0:
-#             return False
-#     return True
+def is_prime(num:int):
+    if num <= 1:
+       return False
+    for index in range(2,num):
+        if num % index == 0:
+            return False
+    return True
 
-# def these_are_primes(cant):
-#     for index in range(2,cant+1):
-#         if is_prime(index):
-#             print(index)
+def these_are_primes(cant):
+    for index in range(2,cant+1):
+        if is_prime(index):
+            print(index)
            
 
-# these_are_primes(100)
+these_are_primes(100)
 
 
 ### Invirtiendo candenas ### first way ##
