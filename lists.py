@@ -6,15 +6,15 @@ for index in number:
     
 print (first)"""
 
-"""string ="xxx"
+string ="xxx"
 string = list(string)
 string.append('X')
 print(string)
 string = "".join(string)
 print(string)
-"""
 
-"""list_duplicate = [1,8,9,4,3,7,1,9,9]
+
+list_duplicate = [1,8,9,4,3,7,1,9,9]
 list_fix = []
 
 for item in list_duplicate:
@@ -24,7 +24,6 @@ for item in list_duplicate:
 
 print(list_fix)
 
-      """
     
 # tuple
 numbers= (1,2,3) #  (tipo de list) no modifica los valores

@@ -29,7 +29,7 @@ def sum_ten(original_value):
 
 add_closure = sum_ten(1)
 print(add_closure(5))
-print((sum_ten(5))(1))
+print((sum_ten(1))(5))
 
 ### Built-in Higher Order Functions ###
 

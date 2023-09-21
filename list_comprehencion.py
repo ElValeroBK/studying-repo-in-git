@@ -3,7 +3,7 @@
 #eje_1
 mi_lista = [1,2,3,4,5,6,7,8,9]
 
-mi_list0 = [i for i in mi_lista]
+mi_list0 = [i**2 for i in mi_lista]
 
 print(mi_list0)
 
