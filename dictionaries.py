@@ -1,6 +1,6 @@
 # dictionaries
 
-datos= input("que datos necesita: ")
+# datos= input("que datos necesita: ")
 
 costumer = {
     "name": "Johne",
@@ -10,5 +10,5 @@ costumer = {
 
 }
 
-print(costumer[datos])
+print(costumer.name)
 

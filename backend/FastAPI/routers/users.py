@@ -1,8 +1,8 @@
-from fastapi import FastAPI
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 
-app  = FastAPI()
+router  = APIRouter(prefix="/user",tags=["users"])
 
 
 class Users(BaseModel):
@@ -18,26 +18,26 @@ users_list = [Users(id=1, name="Danay", lastname="Padron", url="https://fastapi.
               Users(id=4, name="Brais", lastname="Dahlberg", url="https://haakon.com", age=33)]
 
 #get
-@app.get("/user/")
+@router.get("/")
 
 async def usersjson():
     return users_list
 
 #get
 #path   http://127.0.0.1:8000/users/2
-@app.get("/user/{item_id}")
+@router.get("/{item_id}")
 
 async def read_item(item_id: int):
 
-    users= filter(lambda user: user.id== item_id, users_list)
+    user= filter(lambda user: user.id== item_id, users_list)
     try:
-        return list(users)[0]
+        return list(user)[0]
     except:
         return  {"error" : "no hay mas usuarios"}
 
  #get   
  # query   http://127.0.0.1:8000/usersquery/?item_id=1 
-@app.get("/userquery/")
+@router.get("/userquery/")
 
 async def read_item(item_id: int):
     return user_search(item_id)
@@ -47,20 +47,20 @@ async def read_item(item_id: int):
    
 
 #post
-@app.post("/user/")
+@router.post("/",response_model=Users,status_code=201)
 async def creat_user(user: Users):
     if type(user_search(user.id)) == Users:
-         return {"error" : "el usuario ya existe"}        
+        raise HTTPException(status_code=404,detail= "el usuario ya existe")       
     else:
          users_list.append(user)
+         
        
 
 #put
-@app.put("/user/")
+@router.put("/")
 async def update_user(user:Users):
     found = False
     
-
     for indix,userpulled in  enumerate(users_list):
         if userpulled.id == user.id:
             if users_list[indix]== user:
@@ -78,7 +78,7 @@ async def update_user(user:Users):
 
     
 #delate
-@app.delete("/user/{id}")
+@router.delete("/{id}")
 async def delate_user(id: int):
 
     found = False
