@@ -66,7 +66,7 @@ async def oaut_user(token: str= Depends(oauth2))->User:
     return search_user(username)
 
 
-async def current_user(user: User= Depends(oaut_user)):    
+async def current_user(user: User= Depends(oaut_user)) ->User:    
         
     if user.disabled:
         raise HTTPException(

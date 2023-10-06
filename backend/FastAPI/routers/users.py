@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
 
 
@@ -47,10 +47,10 @@ async def read_item(item_id: int):
    
 
 #post
-@router.post("/",response_model=Users,status_code=201)
+@router.post("/",response_model=Users, status_code=status.HTTP_201_CREATED)
 async def creat_user(user: Users):
     if type(user_search(user.id)) == Users:
-        raise HTTPException(status_code=404,detail= "el usuario ya existe")       
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= "el usuario ya existe")       
     else:
          users_list.append(user)
          
