@@ -43,7 +43,7 @@
 # # fibonacci()
 
 
-# # Es un numero primo? ##
+# Es un numero primo? ##
 
 # def is_prime(num:int):
 #     if num <= 1:
@@ -54,12 +54,14 @@
 #     return True
 
 # def these_are_primes(cant):
+#     primo_list = list
 #     for index in range(2,cant+1):
 #         if is_prime(index):
 #             print(index)
            
 
 # these_are_primes(100)
+
 
 
 # ### Invirtiendo candenas ### first way ##
@@ -114,41 +116,235 @@
 #  * - Si quieres, puedes controlar errores en la entrada de datos.   
 #  * - Consulta las reglas del juego si tienes dudas sobre el sistema de puntos. 
 
-def tenis_play(secuencia:list) -> list: # it saves the impression of the winner and the loser per line
-    result = []
-    p1=0
-    p2=0  
-    for secue in secuencia :        
-        points_dir= {0:'Love',1:15,2:30,3:40,4:'Deuce',5:'Ventaja',6:'Ha ganado el'}
-        if secue == "P1":  # (Player 1)
-            p1+=1
-            if (p2+2 == p1 and p2>2) or (p1==p2+4) or (p1==p2+3 and p2!=0) or (p1==p2+2 and p2!=1 and p2!=0): # winner
-                result.append(f'{points_dir[6]} P1')
-                break            
-            elif p1==p2 and p1>2:                          
-               result.append(f'{points_dir[4]}') # tied
-            elif p1 == p2+1 and p1>3:             
-               result.append(f'{points_dir[5]} P1') # forward
-            else:                
-               result.append(f'{points_dir[p1]} - {points_dir[p2]}') #regular score
-        else: # (Player 2)
-           p2+=1           
-           if (p1+2 == p2 and p1>2) or (p2==p1+4) or (p2==p1+3 and p1!=0) or (p2==p1+2 and p1!=1 and p1!=0)  : #ganador
-               result.append(f'{points_dir[6]} P2')
-               break
-           elif p1==p2 and p2>2:
-              result.append(f'{points_dir[4]}') # tied
-           elif p1+1 == p2 and p2>3:
-              result.append(f'{points_dir[5]} P2') #forward
-           else: 
-              result.append(f'{points_dir[p1]} - {points_dir[p2]}') #regular score
+# def tenis_play(secuencia:list) -> list: # it saves the impression of the winner and the loser per line
+#     result = []
+#     p1=0
+#     p2=0  
+#     for secue in secuencia :        
+#         points_dir= {0:'Love',1:15,2:30,3:40,4:'Deuce',5:'Ventaja',6:'Ha ganado el'}
+#         if secue == "P1":  # (Player 1)
+#             p1+=1
+#             if (p2+2 == p1 and p2>2) or (p1==p2+4) or (p1==p2+3 and p2!=0) or (p1==p2+2 and p2!=1 and p2!=0): # winner
+#                 result.append(f'{points_dir[6]} P1')
+#                 break            
+#             elif p1==p2 and p1>2:                          
+#                result.append(f'{points_dir[4]}') # tied
+#             elif p1 == p2+1 and p1>3:             
+#                result.append(f'{points_dir[5]} P1') # forward
+#             else:                
+#                result.append(f'{points_dir[p1]} - {points_dir[p2]}') #regular score
+#         else: # (Player 2)
+#            p2+=1           
+#            if (p1+2 == p2 and p1>2) or (p2==p1+4) or (p2==p1+3 and p1!=0) or (p2==p1+2 and p1!=1 and p1!=0)  : #ganador
+#                result.append(f'{points_dir[6]} P2')
+#                break
+#            elif p1==p2 and p2>2:
+#               result.append(f'{points_dir[4]}') # tied
+#            elif p1+1 == p2 and p2>3:
+#               result.append(f'{points_dir[5]} P2') #forward
+#            else: 
+#               result.append(f'{points_dir[p1]} - {points_dir[p2]}') #regular score
   
-    return result
+#     return result
   
 
-def printresul(result:list)-> str: #imprime cada set ganado
-    for a_favor in result:
-        print(a_favor) 
+# def printresul(result:list)-> str: #imprime cada set ganado
+#     for a_favor in result:
+#         print(a_favor) 
 
-secuencia = ['P1', 'P1', 'P2', 'P1', 'P2','P1']
-printresul(tenis_play(secuencia))
+# secuencia = ['P1', 'P1', 'P2', 'P1', 'P2','P1']
+# printresul(tenis_play(secuencia))
+
+
+
+## Reto #9: Heterograma, isograma y pangrama
+
+# #01 Heterograma
+# #mio
+# def heterograma(word:str)->str:      
+#    for i in range(len(word)-1):
+#       if len((list(filter(lambda item: word[i+1]==item,word)))) >= 2 :
+#          return(word + " : No es un Heterograma")
+#    return(word+": Es un Heterograma")
+
+# print(heterograma("asdfghz"))
+
+
+##de alguien mas
+# def heterograma2(word:str)->bool: 
+#    for i in word:
+#        if word.count(i)!=1:         
+#          return True  
+                    
+#    return False
+
+# print(heterograma2("aasdfghz"))
+
+
+##2 isograma
+
+# def isograma (word:str)->bool:
+#    cont =dict()
+#    for chart in word:
+#       if chart in cont.keys():
+#          cont[chart] += 1
+#       else:
+#          cont[chart] = 1
+#    for values in list(cont.values()):
+#       if values!=2:
+#          return False
+#    return True
+      
+
+# print(isograma("lolocasacs"))
+
+
+##3 Pangrama 
+# def is_pangrama(word:str)->bool:
+#    const =["q","w","e","r","t","y","u",'i','o','p','a','s','d',
+#            'f','g','h','j','k','l','z','x','c','v','b','n','m'," "]
+#    comprueve=dict.fromkeys(const)
+#    for chart in word:
+#       if comprueve[chart] == None:
+#          comprueve[chart]=1
+#       else: comprueve[chart]+=1
+
+#    for chart in list(comprueve.values()):
+#       if chart == None:
+#          return False
+#    return True
+
+
+# print(is_pangrama("el veloz mjurcielago hindu comia feliz cardillo y kiwi la ciguena tocaba el saxofon detras del palenque de paja"))
+
+
+
+#Reto: #3  EL GENERADOR DE CONTRASEÑAS [Media]
+
+# # Importamos el método sample de random.
+# from random import sample
+# import string
+
+# # Declaramos la función con un argumento (longitud de la contraseña)
+# def password_generator(longitud):
+#     if longitud>= 8 and longitud<= 16:
+
+#         # Definimos los caracteres simbolos y numeros
+#         abc =""
+#         abc = string.ascii_letters 
+#         numeros = ""
+#         numeros = string.digits
+#         simbolos= ""
+#         simbolos = string.punctuation
+        
+#         # Definimos la secuencia
+#         secuencia = abc + numeros + simbolos
+        
+#         # Llamamos la función sample() utilizando la secuencia, y la longitud
+#         password_union = sample(secuencia, longitud)
+        
+#         # Con join insertamos los elementos de una lista en una cadena
+#         password_result = "".join(password_union)
+        
+#         # Retornamos la variables "password_result"
+#         return password_result
+
+#     respuesta = "la longitud de los caracteres deve tener entre 8 y 16"
+#     return respuesta
+
+# # Llamos a la función "password_generatos" y le pasamos el valor "12" 
+# password = password_generator(16)
+
+# # Imprimimos el resultado
+# print("Contraseña: ", password)
+
+
+
+#Reto #4: PRIMO, FIBONACCI Y PAR
+# def is_fibonacci_num(number:int)-> int:  #Returns the number of the Fibonacci sequence. 
+#     if number == 0:
+#         return 0
+#     elif number == 1:
+#         return 1
+#     else: 
+#         return is_fibonacci_num(number-2) + is_fibonacci_num(number-1)
+
+# def is_primo(number): # retunr true or falce if the number is Primo
+#    if number == 2:
+#       return True
+
+#    if number % 2 == 0:
+#       return False
+#    else: return True
+
+
+# def is_fibonacci(number:int)->bool: # retunr true or falce if the number is fibonacci
+#    fibo_list =[1,1] 
+
+#    while fibo_list[-1] < number:
+#       fibo_list.append(fibo_list[-2] + fibo_list[-1])
+         
+#    if fibo_list[-1] == number:
+#       return True
+#    else: return False
+   
+
+# def is_par(number):
+#     if number % 2 == 0:
+#        return True
+#     else: return False
+
+# def is_primo_fibonacci_par(number):
+#     secuencia = str()
+#     if is_primo(number):
+#        secuencia = "es primo, "
+#     else: secuencia = "no es primo, "
+#     if is_fibonacci(number):
+#        secuencia +="es fibonacci, "
+#     else: secuencia += "no es fibonacci, "
+#     if is_par(number):
+#        secuencia += "y es par"
+#     else: secuencia += "Y es inpar"
+  
+#     print(secuencia)
+    
+
+# print(is_primo(5))
+# print(is_fibonacci(121393))
+# print(is_par(10))
+
+#is_primo_fibonacci_par(2)
+
+
+import time
+import math
+
+def number_pseudo():
+    tiempo_actual = time.time()
+    print(tiempo_actual)
+    valor, _ = math.modf(tiempo_actual)
+    var = valor * 1000
+
+    if int(var) == 100:
+        return 100
+    else:
+        return int(valor * 100)
+
+print(number_pseudo())
+
+
+import requests
+
+
+def apiCall(id):
+    url = f"https://pokeapi.co/api/v2/pokemon/{id}"
+    response = requests.get(url)
+    if (response.status_code == 200):
+        data = response.json()
+        print(data)
+    else:
+        print(f"Error al llamar a la API: {response.status_code}")
+
+
+id = input("Enter name or id of the pokemon: ")
+apiCall(id)
