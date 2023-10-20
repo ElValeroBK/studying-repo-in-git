@@ -30,3 +30,9 @@ else:
 
 print ( f"your downpayment will be of {down_payment} $")
 
+url = 'https://retosdeprogramacion.com/?year=2023&challenge=0&prueba=hola'
+
+for string in url:
+    if '&' in string:
+        split2 = string.split('&')
+   

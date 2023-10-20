@@ -316,35 +316,93 @@
 #is_primo_fibonacci_par(2)
 
 
-import time
-import math
+# import time
+# import math
 
-def number_pseudo():
-    tiempo_actual = time.time()
-    print(tiempo_actual)
-    valor, _ = math.modf(tiempo_actual)
-    var = valor * 1000
+# def number_pseudo():
+#     tiempo_actual = time.time()
+#     print(tiempo_actual)
+#     valor, _ = math.modf(tiempo_actual)
+#     var = valor * 1000
 
-    if int(var) == 100:
-        return 100
-    else:
-        return int(valor * 100)
+#     if int(var) == 100:
+#         return 100
+#     else:
+#         return int(valor * 100)
 
-print(number_pseudo())
+# print(number_pseudo())
 
+### Reto #11 - URL PARAMS  ###
 
-import requests
-
-
-def apiCall(id):
-    url = f"https://pokeapi.co/api/v2/pokemon/{id}"
-    response = requests.get(url)
-    if (response.status_code == 200):
-        data = response.json()
-        print(data)
-    else:
-        print(f"Error al llamar a la API: {response.status_code}")
+#  Dada una URL con parámetros, crea una función que obtenga sus valores.
+#  No se pueden usar operaciones del lenguaje que realicen esta tarea directamente.
+ 
+#  Ejemplo: En la url https://retosdeprogramacion.com?year=2023&challenge=0
+#  los parámetros serían ["2023", "0"]
 
 
-id = input("Enter name or id of the pokemon: ")
-apiCall(id)
+
+# def all_parameter(url:str)->list:
+#     split = url.split("?")
+#     splited=split[1].split("=")
+#     momentaneo=[]
+#     string=""
+#     result=[]
+
+    
+#     for x in splited[1:-1]:
+#         momentaneo.clear()
+#         for value in x:
+#             if value!="&":
+#                 momentaneo.append(value)
+#             else: 
+#                 string= "".join(momentaneo)
+#                 result.append(string)
+#                 break
+#     result.append(splited[-1])
+#     print(result)  
+            
+# all_parameter("https://retosdeprogramacion.com?year=2023&challenge=casa&offset=2&client_id=55&limit=2034")
+
+
+
+# from datetime import date
+
+# def is_fraiday_13():
+#    print("ingresa el año y el mes para saber si contiene un viernes 13 ")
+#    year,month = map(int,input().split())
+   
+
+#    if date.weekday(date(year,month,1)) == 6:
+#       print (True)
+#    else: print(False)
+
+
+# is_fraiday_13()
+
+### Reto #13: Adivina la palabra ###
+
+
+from urllib.request import Request, urlopen
+from random import  randrange
+import numpy
+
+def words_list(amount:int)->list:     # devuelve una lista de palabras con la cantidad celecionadas no mas de 25488 palabras
+    url="https://svnweb.freebsd.org/csrg/share/dict/words?revision=61569&view=co"
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    web_byte = urlopen(req).read()
+    webpage = web_byte.decode('utf-8')
+    lista=str(webpage).split("\n") # 25488
+    ram = randrange(50,25488-amount)
+    return(lista[ram:ram+amount])
+
+def word_random_choice(words:list)->str: # devuelve una palabra ramdom de una lista 
+    return numpy.random.choice(words)
+
+def hide_char_in_the_word(word:str)->int:  # devuelve una palabra con el 50% de la palabra oculta
+
+    cont = len(word)
+
+    
+    return int(cont*0.50) 
+    

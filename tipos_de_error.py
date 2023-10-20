@@ -47,3 +47,18 @@ print(type(my_int))
 # ZeroDivisionError
 # print(4/0) # Descomentar para Error
 print(4/2)
+
+
+def obtenerValoresURL(url: str):
+    variables = []
+    try:
+        variablesEnURL = url.split("?")[1]
+        for v in variablesEnURL.split("&"):
+            variables.append(v.split("=")[1])
+        print(variables)
+    except:
+        print("Esa URL no tiene parámetros los cuáles desglosar")
+
+
+obtenerValoresURL("https://retosdeprogramacion.com") 
+obtenerValoresURL("https://retosdeprogramacion.com?year=2023&challenge=0")
