@@ -1,8 +1,8 @@
 **/.vscode
 **/backend/FastAPI/__pycache__/main.cpython-311.pyc
-**/backend/FastAPI/__pycache__/
+/backend/FastAPI/__pycache__/
 /backend/FastAPI/routers/__pycache__/
-/backend/FastAPI/db/__pycache__/
-/backend/FastAPI/db/models/__pycache__/
-/backend/FastAPI/db/schemas/__pycache__/
-/__pycache__/
+__pycache__/
+backend/FastAPI/db/__pycache__/
+backend/FastAPI/db/models/__pycache__/
+backend/FastAPI/db/schemas/__pycache__/
