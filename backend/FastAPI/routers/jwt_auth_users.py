@@ -5,14 +5,14 @@ from jose import jwt,JWTError
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 
-app = FastAPI()
+router = APIRouter()
 
 oauth2 = OAuth2PasswordBearer(tokenUrl="login")
 
 crypt = CryptContext(schemes=["bcrypt"])
 
 algorithm = "HS256"
-secrete_key = "8f5babc6adacca2d6b0dc1cc2a774793ef8673f83ad83640474fd3a535d37a08"
+secret = "8f5babc6adacca2d6b0dc1cc2a774793ef8673f83ad83640474fd3a535d37a08"
 
 class User(BaseModel):
     username: str
@@ -26,19 +26,19 @@ class UserDB(User):
 
 
 users_db = {
-    "mouredev": {
-        "username": "mouredev",
+    "yasiel": {
+        "username": "yasiel",
         "full_name": "Brais Moure",
         "email": "braismoure@mourede.com",
         "disabled": False,
-        "password": "$2a$12$mQcu70AUwWkG5hG3f2xiS.lhMXFa9qPlIyyH4u/IMiK0HtKgwW.iG"
+        "password": "$2a$12$SNyCIbgWnZwv3ssiWWCRxeG387P3T/mAVSWqSSoIHGlqjHQEtsFZu"
     },
     "mouredev2": {
         "username": "mouredev2",
         "full_name": "Brais Moure 2",
         "email": "braismoure2@mourede.com",
         "disabled": True,
-        "password": "$2a$12$YyQrs./buZmhyoOgGRa2eud/m1/RMOoRm4o0iK5IY2nUDhiL9Oyr."
+        "password": "$2a$12$1FSotKeoai78UrLHX80HDOziLA2VcM8e1ZRKCvUDQjoxYcwl6eyO6"
     }
 }
 
@@ -56,7 +56,7 @@ exception =  HTTPException(
         )
 async def oaut_user(token: str= Depends(oauth2))->User:
     try:
-        username = jwt.decode(token,secrete_key,algorithm).get("sub")
+        username = jwt.decode(token,secret,algorithms=[algorithm]).get("sub")
         if username is  None:
            raise exception
             
@@ -76,7 +76,7 @@ async def current_user(user: User= Depends(oaut_user)) ->User:
 
 
 
-@app.post("/login")
+@router.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):    
     user= search_user_db(form.username)
     if not user:
@@ -87,12 +87,12 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="La contraseña no es correcta")
     
-    tokes_epiration_time = datetime.utcnow() + timedelta(minutes=5)
+    tokes_epiration_time = datetime.utcnow() + timedelta(minutes=60)
     token_user = {"sub":user.username,"exp":tokes_epiration_time}
 
-    return {"access_token": jwt.encode(token_user,secrete_key,algorithm=algorithm,), "token_type": "bearer"}
+    return {"access_token": jwt.encode(token_user,secret,algorithm=algorithm,), "token_type": "bearer"}
 
 
-@app.get("/users/me")
+@router.get("/users/me")
 async def me(user: User = Depends(current_user))-> User:
     return user

@@ -386,23 +386,48 @@
 from urllib.request import Request, urlopen
 from random import  randrange
 import numpy
+import random
 
-def words_list(amount:int)->list:     # devuelve una lista de palabras con la cantidad celecionadas no mas de 25488 palabras
+# crea una lista de palabras con la cantidad celecionadas no mas de 25488 palabras
+def words_to_found(amount:int)->tuple:     
     url="https://svnweb.freebsd.org/csrg/share/dict/words?revision=61569&view=co"
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     web_byte = urlopen(req).read()
     webpage = web_byte.decode('utf-8')
     lista=str(webpage).split("\n") # 25488
     ram = randrange(50,25488-amount)
-    return(lista[ram:ram+amount])
+    word_real= numpy.random.choice(lista[ram:ram+amount]) # debuelve una palabra ramdom de la list
+    amount = len(word_real)  
+    word_with_spase = word_real  
+    char_hide_amount =int(amount*0.50)
+    word_with_spase= list(word_with_spase)
+    for char in range(0,char_hide_amount): 
+     indice=random.randint(char,amount-1) 
+     word_with_spase[indice]="_"        
+    return word_real,"".join(word_with_spase)  # devuelve una palabra con el 50% de la palabra oculta y la palabra completa
 
-def word_random_choice(words:list)->str: # devuelve una palabra ramdom de una lista 
-    return numpy.random.choice(words)
+  
+def found_the_word(word:tuple)->str:
+    print('write a letter and guess or the whole word')
+    # to now the answer print(word[0]) 
+    limit = 4
+    wordgood,word_with_empty = word         
+    while limit >0 : 
+      letter_or_word = input(f'word to Found [ {word_with_empty} ] ')    
+      if wordgood == letter_or_word:
+           return "you found the word, You win"                 
+      elif letter_or_word in wordgood:
+            word_with_empty =list(word_with_empty)
+            for i,wordgood_value in enumerate(wordgood):
+                if letter_or_word == wordgood_value and word_with_empty[i] == "_":
+                    word_with_empty [i]= letter_or_word 
+                    word_with_empty=  "".join(word_with_empty)
+                    if wordgood == word_with_empty:                     
+                      return "you found the word, You win"            
+      else: 
+         limit= limit-1
+         print(f"you miss a try just {limit} left")          
+    return "you lose"
+           
+print(found_the_word(words_to_found(10)))
 
-def hide_char_in_the_word(word:str)->int:  # devuelve una palabra con el 50% de la palabra oculta
-
-    cont = len(word)
-
-    
-    return int(cont*0.50) 
-    

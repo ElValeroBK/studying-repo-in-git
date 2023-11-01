@@ -31,7 +31,7 @@ async def user(user: User):
     if type(search_user("email", user.email)) == User:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="El usuario ya existe")
-
+    
     user_dict = dict(user)
     del user_dict["id"]
 
