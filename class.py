@@ -41,19 +41,23 @@ juan.talk()'''
 
 class Contruction():
     def __init__(self,room,sala):
-        self.room=room
-        self.sala=sala        
+        self.room= room
+        self.sala=sala  
+        self.__room = room + sala  # propiedad pribada (__room)
+    def rooms(self):
+        return self.__room      
     def home(self):
         print(f'I am a beautiful House with {self.room} room')
     def hotel(self):
         print(f'I am a beautiful Hotel')
+        
 
 
 newyork=Contruction(5,1)      #Object (newyork)
 print(newyork.room)
-newyork.home()
-newyork.x=newyork.sala
-print(newyork.x)
+print(newyork.sala)
+#print(newyork.__room)
+print(newyork.rooms())
 
 
 

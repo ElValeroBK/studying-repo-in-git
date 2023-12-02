@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 
 router = APIRouter()
 
+
 oauth2 = OAuth2PasswordBearer(tokenUrl="login")
 
 crypt = CryptContext(schemes=["bcrypt"])

@@ -1,7 +1,7 @@
 print (3 ** 2)
 print (20 % 7)
 number = 20 / 7
-print (100// 10)
+print (70// 10)
 print (20 * 7)
 
 print(round(number)) # redondea 

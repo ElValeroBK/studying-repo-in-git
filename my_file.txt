@@ -1,9 +1,9 @@
+Como leer un archivo en Python
+Para leer un archivo podemos usar la palabra reservada with y la
+ funcinopen con dos argumentos: el primero es la dirección y el nombre del archivo,
+  el segundo es el modo en el que el archivo será abierto.
 
-Name: Yasiel
-Apellido: Valero
-Age: 37 year old
-Y mi lenguaje preferido es Python
-Name
+Para abrir archivos de textos, el modo es r  para read.
 
-Aunque tambi�n me gusta Kotlin
-Hello I am yasi
+Luego, usamos la función print que imprime en la consola y toma como argumentos el nombre
+ de la variable con la función read.
